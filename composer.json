@@ -1,0 +1,50 @@
+{
+    "name": "liberusoftware/ecommerce-fulfillment-filament",
+    "description": "Filament administration for fulfillment: what an order still owes, the parcels raised against it, and the three moves a parcel is allowed to make. Counters are shown and never typed, over-shipping is refused rather than clamped, and a dispatched parcel cannot be called off.",
+    "type": "liberu-module",
+    "license": "MIT",
+    "version": "0.1.0",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/liberusoftware/module-ecommerce-fulfillment"
+        }
+    ],
+    "require": {
+        "php": "^8.5",
+        "laravel/framework": "^13.0",
+        "filament/filament": "^5.0",
+        "liberusoftware/module-manager": "^1.4",
+        "liberusoftware/ecommerce-fulfillment": "^0.1"
+    },
+    "require-dev": {
+        "liberusoftware/ecommerce-fulfillment": "^0.1",
+        "liberusoftware/package-testbench": "^1.7",
+        "pestphp/pest": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Liberu\\Ecommerce\\Fulfillment\\Filament\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Liberu\\Ecommerce\\Fulfillment\\Filament\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "liberu": {
+            "name": "ecommerce-fulfillment-filament"
+        }
+    },
+    "scripts": {
+        "test": "pest"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

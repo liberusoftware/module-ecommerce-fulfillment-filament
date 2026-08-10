@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schemas.liberu.dev/module/v1.json",
+    "name": "ecommerce-fulfillment-filament",
+    "display_name": "Fulfillment Administration",
+    "description": "Optional Filament administration for the Fulfillment domain module: what an order still owes, the parcels raised against it, and the state machine's own legal moves. Read-only everywhere else, and there is no editable counter anywhere.",
+    "version": "0.1.0",
+    "category": "presentation",
+    "provider": "Liberu\\Ecommerce\\Fulfillment\\Filament\\FulfillmentFilamentServiceProvider",
+    "requires": {
+        "php": "^8.5",
+        "laravel": "^13.0",
+        "packages": {
+            "liberusoftware/module-manager": "^1.4",
+            "liberusoftware/ecommerce-fulfillment": "^0.1"
+        }
+    },
+    "presentation": {
+        "filament": {
+            "admin": [
+                "Liberu\\Ecommerce\\Fulfillment\\Filament\\FulfillmentPlugin"
+            ]
+        }
+    },
+    "capabilities": [
+        "ecommerce.fulfillment.filament"
+    ],
+    "default_enabled": false,
+    "features": [
+        "What an order still owes, as a pick list",
+        "Parcels, with a destination and a carriage cost of their own",
+        "The shipment state machine as actions",
+        "Only legal transitions are offered",
+        "No editable counter field anywhere",
+        "Nothing that could lower a dispatched count",
+        "Cancellation refused once a parcel has left",
+        "Over-shipping surfaced as a refusal, never clamped",
+        "Cancellation reasons from a fixed vocabulary",
+        "Line accounting shown as words",
+        "Provider-neutral carrier and service level",
+        "Tracking kept out of search, filters and logs",
+        "Integer minor unit carriage costs",
+        "Team scoping",
+        "Read-only by default"
+    ]
+}
