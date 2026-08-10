@@ -120,6 +120,15 @@ class ShipmentResource extends Resource
      * a page that gets pasted into a support ticket. The domain mints
      * `reference` from the CSPRNG for exactly this, and a resource that ignored
      * it would have made the column decorative.
+     *
+     * This property governs only the *inbound* half: it is read in
+     * `resolveRecordRouteBinding()`, which turns whatever arrived in the URL back
+     * into a parcel. It has no say in what a generated URL says. Route
+     * *generation* asks the route for a binding field and, finding none, falls
+     * back to the model's own route key — the id. So the view page declares its
+     * parameter as `{record:reference}` in `getPages()`, which is the half that
+     * keeps the id out of the address bar. Both are needed; either alone is a
+     * half-measure that reads like a control.
      */
     protected static ?string $recordRouteKeyName = 'reference';
 
@@ -542,13 +551,17 @@ class ShipmentResource extends Resource
      * supplies and there is no such thing as one somebody typed into a form. No
      * edit page, because what went in the box is a fact about the box.
      *
+     * The view parameter carries an explicit binding field, `{record:reference}`.
+     * That is what makes a generated URL say `SHP-…` rather than `1`; see
+     * `$recordRouteKeyName` above for why the two halves are separate.
+     *
      * @return array<string, PageRegistration>
      */
     public static function getPages(): array
     {
         return [
             'index' => ListShipments::route('/'),
-            'view' => ViewShipment::route('/{record}'),
+            'view' => ViewShipment::route('/{record:reference}'),
         ];
     }
 
